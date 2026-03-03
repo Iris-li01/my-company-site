@@ -1,0 +1,731 @@
+以下是您要求的产品展示型网站完整HTML代码，主题为水泵系列，所有内容已转换为英文，并新增了博客区域。导航栏包含Home、Products、About Us、Blog、Contact Us，页面采用现代简约风格，并保留滚动淡入动效。
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>AquaFlow Pumps · Product Showcase</title>
+    <!-- Google Fonts Inter (modern sans-serif) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        /* RESET & variables */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2A5C82;        /* deep blue */
+            --primary-light: #3a70a0;
+            --bg-light: #F4F7FB;       /* light gray background */
+            --white: #ffffff;
+            --text-dark: #1e2b37;
+            --text-soft: #4a5a68;
+            --shadow-sm: 0 8px 20px rgba(0,0,0,0.03), 0 2px 6px rgba(0,0,0,0.02);
+            --shadow-hover: 0 15px 30px rgba(42,92,130,0.08);
+            --border-radius: 18px;
+            --border-radius-sm: 12px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+        @media (max-width: 768px) {
+            section {
+                padding: 60px 0;
+            }
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+            padding: 12px 0;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: blur(8px);
+            background-color: rgba(255,255,255,0.85);
+        }
+        .navbar .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 500;
+            color: var(--text-dark);
+            transition: color 0.2s;
+            font-size: 1rem;
+        }
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        @media (max-width: 700px) {
+            .navbar .container {
+                flex-direction: column;
+                gap: 12px;
+            }
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1.2rem 1.8rem;
+            }
+        }
+
+        /* Button */
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            font-weight: 600;
+            padding: 12px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: background-color 0.2s, transform 0.1s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 10px rgba(42,92,130,0.2);
+        }
+        .btn:hover {
+            background-color: var(--primary-light);
+        }
+
+        /* Cards */
+        .card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 100%;
+        }
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* Grids */
+        .grid-3, .grid-4 {
+            display: grid;
+            gap: 30px;
+        }
+        .grid-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        .grid-4 {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        @media (max-width: 992px) {
+            .grid-4 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 768px) {
+            .grid-3 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 550px) {
+            .grid-3, .grid-4 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Hero */
+        .hero {
+            background-color: var(--bg-light);
+            padding: 60px 0 40px 0;
+        }
+        .hero .container {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .hero-content {
+            flex: 1 1 400px;
+        }
+        .hero-content h1 {
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--text-soft);
+            margin-bottom: 2rem;
+            max-width: 550px;
+        }
+        .hero-image {
+            flex: 1 1 300px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* Product card image */
+        .product-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+        .card-content {
+            padding: 24px 20px 26px;
+        }
+        .card-content h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+        .card-content p {
+            color: var(--text-soft);
+            margin-bottom: 12px;
+        }
+        .product-spec {
+            font-size: 0.9rem;
+            color: #5f6b7a;
+            border-top: 1px solid #eef2f6;
+            padding-top: 12px;
+            margin-top: 8px;
+            display: flex;
+            gap: 16px;
+        }
+        .product-spec span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* About */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        .about-text p {
+            margin: 20px 0 10px;
+            color: var(--text-soft);
+            font-size: 1.1rem;
+        }
+        .about-image img {
+            width: 100%;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+        }
+        @media (max-width: 800px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        /* Team members */
+        .team-member {
+            text-align: center;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 30px 20px 25px;
+            box-shadow: var(--shadow-sm);
+            transition: 0.3s;
+        }
+        .team-member:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+        }
+        .team-avatar {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 18px;
+            border: 4px solid var(--bg-light);
+        }
+        .team-member h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        .team-member .position {
+            color: #718096;
+            font-weight: 400;
+            margin: 8px 0 12px;
+        }
+        .team-member p {
+            color: var(--text-soft);
+            font-size: 0.95rem;
+            padding: 0 6px;
+        }
+
+        /* Blog card */
+        .blog-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: 0.3s;
+            height: 100%;
+        }
+        .blog-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+        }
+        .blog-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        .blog-content {
+            padding: 22px 18px 24px;
+        }
+        .blog-meta {
+            font-size: 0.8rem;
+            color: #8598a5;
+            margin-bottom: 8px;
+        }
+        .blog-content h4 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        .blog-content p {
+            color: var(--text-soft);
+            margin-bottom: 16px;
+        }
+        .read-link {
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+        .read-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Contact form */
+        .contact-form {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 40px;
+            box-shadow: var(--shadow-sm);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 16px 20px;
+            border: 1px solid #e2e8f0;
+            border-radius: var(--border-radius-sm);
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            background-color: #f9fcff;
+            transition: border 0.2s, box-shadow 0.2s;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(42,92,130,0.1);
+        }
+        .form-group textarea {
+            min-height: 140px;
+            resize: vertical;
+        }
+        .contact-form .btn {
+            width: 100%;
+            padding: 16px;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 40px 0 30px;
+            margin-top: 40px;
+        }
+        .footer .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: 1px;
+            opacity: 0.95;
+        }
+        .footer-copyright {
+            opacity: 0.8;
+            font-size: 0.95rem;
+            border-top: 1px solid rgba(255,255,255,0.15);
+            padding-top: 24px;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        /* Fade-in scroll animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity 0.8s cubic-bezier(0.2, 0.9, 0.3, 1), transform 0.8s cubic-bezier(0.2, 0.9, 0.3, 1);
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .section-sub {
+            text-align: center;
+            color: var(--text-soft);
+            max-width: 650px;
+            margin: 0 auto 50px auto;
+            font-size: 1.2rem;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+        .mt-2 {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <header class="navbar">
+        <div class="container">
+            <div class="logo">AquaFlow Pumps</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero-content fade-in">
+                    <h1>Reliable Pumps for Every Need</h1>
+                    <p>High‑efficiency water pumps engineered for agriculture, industry, and home use. Durable, energy‑saving, and smart.</p>
+                    <a href="#products" class="btn">Explore Products</a>
+                </div>
+                <div class="hero-image fade-in">
+                    <img src="https://picsum.photos/id/123/600/400" alt="pump hero" loading="lazy">
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Section (水泵系列) -->
+        <section id="products">
+            <div class="container">
+                <h2 class="section-title fade-in">Our Pump Series</h2>
+                <p class="section-sub fade-in">Advanced pumping solutions for residential, commercial and agricultural applications</p>
+                <div class="grid-4">
+                    <!-- Product 1 -->
+                    <div class="card fade-in">
+                        <img class="product-img" src="https://picsum.photos/id/223/400/250" alt="Eco Pump" loading="lazy">
+                        <div class="card-content">
+                            <h3>EcoSub</h3>
+                            <p>Submersible pump with energy‑efficient motor, ideal for clean water transfer.</p>
+                            <div class="product-spec">
+                                <span>⚡ 0.75 kW</span>
+                                <span>💧 200 L/min</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product 2 -->
+                    <div class="card fade-in">
+                        <img class="product-img" src="https://picsum.photos/id/159/400/250" alt="Industrial Pump" loading="lazy">
+                        <div class="card-content">
+                            <h3>HydroForce</h3>
+                            <p>Heavy‑duty centrifugal pump for industrial circulation and high‑pressure tasks.</p>
+                            <div class="product-spec">
+                                <span>⚡ 5.5 kW</span>
+                                <span>💧 800 L/min</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product 3 -->
+                    <div class="card fade-in">
+                        <img class="product-img" src="https://picsum.photos/id/306/400/250" alt="Solar Pump" loading="lazy">
+                        <div class="card-content">
+                            <h3>SolarFlow</h3>
+                            <p>Solar‑powered surface pump for off‑grid irrigation and remote areas.</p>
+                            <div class="product-spec">
+                                <span>☀️ 1.2 kWp</span>
+                                <span>💧 150 L/min</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product 4 -->
+                    <div class="card fade-in">
+                        <img class="product-img" src="https://picsum.photos/id/180/400/250" alt="Multi-stage Pump" loading="lazy">
+                        <div class="card-content">
+                            <h3>MultiPress</h3>
+                            <p>Multi‑stage vertical pump for constant pressure in buildings and agriculture.</p>
+                            <div class="product-spec">
+                                <span>⚡ 2.2 kW</span>
+                                <span>💧 350 L/min</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-2 fade-in">
+                    <a href="#" class="btn" style="background-color: transparent; color: var(--primary); border:1px solid var(--primary); box-shadow: none;">View all models →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us -->
+        <section id="about" style="background-color: white;">
+            <div class="container">
+                <div class="about-grid">
+                    <div class="about-text fade-in">
+                        <h2 class="section-title" style="text-align: left;">About AquaFlow</h2>
+                        <p>Founded in 2010, AquaFlow is a leading manufacturer of high‑performance pumps. We combine German engineering with modern manufacturing to deliver reliable water solutions worldwide.</p>
+                        <p>Our pumps are trusted by farmers, plant engineers, and homeowners across 30+ countries. We focus on durability, energy efficiency, and smart controls.</p>
+                        <a href="#contact" class="btn" style="margin-top: 16px;">Get in touch</a>
+                    </div>
+                    <div class="about-image fade-in">
+                        <img src="https://picsum.photos/id/42/600/400" alt="factory" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team (core team) -->
+        <section id="team">
+            <div class="container">
+                <h2 class="section-title fade-in">Leadership Team</h2>
+                <p class="section-sub fade-in">Passionate experts driving pump innovation</p>
+                <div class="grid-4">
+                    <!-- Member 1 -->
+                    <div class="team-member fade-in">
+                        <img class="team-avatar" src="https://i.pravatar.cc/300?img=12" alt="John M." loading="lazy">
+                        <h3>John Miller</h3>
+                        <div class="position">CEO & Co‑founder</div>
+                        <p>20+ years in fluid engineering, previously at Grundfos.</p>
+                    </div>
+                    <!-- Member 2 -->
+                    <div class="team-member fade-in">
+                        <img class="team-avatar" src="https://i.pravatar.cc/300?img=29" alt="Sarah Chen" loading="lazy">
+                        <h3>Sarah Chen</h3>
+                        <div class="position">CTO</div>
+                        <p>Expert in smart pump controls and IoT integration.</p>
+                    </div>
+                    <!-- Member 3 -->
+                    <div class="team-member fade-in">
+                        <img class="team-avatar" src="https://i.pravatar.cc/300?img=53" alt="David Kruse" loading="lazy">
+                        <h3>David Kruse</h3>
+                        <div class="position">Head of R&D</div>
+                        <p>PhD in hydraulic machinery, holds 12 patents.</p>
+                    </div>
+                    <!-- Member 4 -->
+                    <div class="team-member fade-in">
+                        <img class="team-avatar" src="https://i.pravatar.cc/300?img=45" alt="Linda Park" loading="lazy">
+                        <h3>Linda Park</h3>
+                        <div class="position">Marketing Director</div>
+                        <p>10 years B2B industrial marketing.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Section (new) -->
+        <section id="blog" style="background-color: white;">
+            <div class="container">
+                <h2 class="section-title fade-in">Latest from Blog</h2>
+                <p class="section-sub fade-in">News, tips, and insights about pumping technology</p>
+                <div class="grid-3">
+                    <!-- Blog post 1 -->
+                    <div class="blog-card fade-in">
+                        <img class="blog-img" src="https://picsum.photos/id/1043/500/300" alt="blog solar pump" loading="lazy">
+                        <div class="blog-content">
+                            <div class="blog-meta">May 12, 2025 · 4 min read</div>
+                            <h4>Solar Pumps: Off‑Grid Revolution</h4>
+                            <p>How photovoltaic water pumps are transforming agriculture in remote areas.</p>
+                            <a href="#" class="read-link">Read more →</a>
+                        </div>
+                    </div>
+                    <!-- Blog post 2 -->
+                    <div class="blog-card fade-in">
+                        <img class="blog-img" src="https://picsum.photos/id/20/500/300" alt="maintenance tips" loading="lazy">
+                        <div class="blog-content">
+                            <div class="blog-meta">April 28, 2025 · 3 min read</div>
+                            <h4>5 Maintenance Tips for Long Pump Life</h4>
+                            <p>Simple checks that can double the lifespan of your pump.</p>
+                            <a href="#" class="read-link">Read more →</a>
+                        </div>
+                    </div>
+                    <!-- Blog post 3 -->
+                    <div class="blog-card fade-in">
+                        <img class="blog-img" src="https://picsum.photos/id/26/500/300" alt="smart pump" loading="lazy">
+                        <div class="blog-content">
+                            <div class="blog-meta">April 10, 2025 · 5 min read</div>
+                            <h4>Smart Pumps & IoT Integration</h4>
+                            <p>How connected pumps reduce downtime and energy costs.</p>
+                            <a href="#" class="read-link">Read more →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Form -->
+        <section id="contact">
+            <div class="container">
+                <h2 class="section-title fade-in">Contact Us</h2>
+                <p class="section-sub fade-in">Have questions or need a quote? We’ll reply within 24h.</p>
+                <div class="contact-form fade-in">
+                    <form id="contactForm" action="#" method="post">
+                        <div class="form-group">
+                            <input type="text" name="name" placeholder="Your name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="Email address" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" placeholder="Tell us about your pumping needs..."></textarea>
+                        </div>
+                        <button type="button" class="btn" onclick="alert('Thank you! We will get back to you shortly. (demo)')">Send message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-logo">AquaFlow Pumps</div>
+            <p style="margin-bottom: 20px; opacity: 0.9;">Reliable water solutions since 2010</p>
+            <div class="footer-copyright">
+                © 2025 AquaFlow. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll fade-in script (Intersection Observer) -->
+    <script>
+        (function() {
+            document.addEventListener('DOMContentLoaded', function() {
+                const faders = document.querySelectorAll('.fade-in');
+                const appearOptions = { threshold: 0.2, rootMargin: '0px 0px -10px 0px' };
+                const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, appearOptions);
+
+                faders.forEach(fader => {
+                    const rect = fader.getBoundingClientRect();
+                    const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+                    if (rect.top < windowHeight && rect.bottom > 0) {
+                        fader.classList.add('visible');
+                    } else {
+                        appearOnScroll.observe(fader);
+                    }
+                });
+
+                let resizeTimer;
+                window.addEventListener('resize', function() {
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(function() {
+                        document.querySelectorAll('.fade-in:not(.visible)').forEach(el => {
+                            const rect = el.getBoundingClientRect();
+                            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                                el.classList.add('visible');
+                            }
+                        });
+                    }, 150);
+                });
+            });
+        })();
+    </script>
+
+    <!-- Smooth scroll for anchor links -->
+    <script>
+        (function() {
+            document.querySelectorAll('.nav-links a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+        })();
+    </script>
+</body>
+</html>
+```
