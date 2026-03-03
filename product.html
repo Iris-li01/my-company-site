@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - AquaFlow Pumps</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        /* ========== GLOBAL STYLES (same as index) ========== */
+        * { margin:0; padding:0; box-sizing:border-box; }
+        :root {
+            --primary: #2A5C82;
+            --primary-light: #3a70a0;
+            --bg-light: #F4F7FB;
+            --white: #ffffff;
+            --text-dark: #1e2b37;
+            --text-soft: #4a5a68;
+            --shadow-sm: 0 8px 20px rgba(0,0,0,0.03), 0 2px 6px rgba(0,0,0,0.02);
+            --shadow-hover: 0 15px 30px rgba(42,92,130,0.08);
+            --border-radius: 18px;
+            --border-radius-sm: 12px;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.5;
+        }
+        .container { max-width:1280px; margin:0 auto; padding:0 24px; }
+        section { padding:80px 0; }
+        .navbar { background:rgba(255,255,255,0.85); backdrop-filter:blur(8px); padding:12px 0; position:sticky; top:0; z-index:10; }
+        .navbar .container { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; }
+        .logo { font-size:1.8rem; font-weight:700; color:var(--primary); }
+        .nav-links { display:flex; gap:2rem; list-style:none; }
+        .nav-links a { text-decoration:none; font-weight:500; color:var(--text-dark); }
+        .nav-links a:hover { color:var(--primary); }
+        @media (max-width:700px){ .navbar .container{flex-direction:column;} .nav-links{flex-wrap:wrap;} }
+        .btn { display:inline-block; background:var(--primary); color:white; padding:12px 32px; border-radius:50px; text-decoration:none; border:none; cursor:pointer; }
+        .btn:hover { background:var(--primary-light); }
+        .footer { background:var(--primary); color:white; padding:50px 0 30px; margin-top:40px; }
+        .footer .container { display:grid; grid-template-columns:repeat(4,1fr); gap:30px; }
+        .footer-col h4 { font-size:1.2rem; margin-bottom:20px; position:relative; padding-bottom:10px; }
+        .footer-col h4::after { content:''; position:absolute; left:0; bottom:0; width:40px; height:2px; background:rgba(255,255,255,0.3); }
+        .footer-col ul { list-style:none; }
+        .footer-col ul li { margin-bottom:10px; }
+        .footer-col ul li a { color:rgba(255,255,255,0.8); text-decoration:none; }
+        .footer-col ul li a:hover { color:white; padding-left:5px; }
+        .footer-copyright { grid-column:span 4; text-align:center; margin-top:40px; padding-top:20px; border-top:1px solid rgba(255,255,255,0.15); }
+        @media (max-width:768px){ .footer .container{grid-template-columns:repeat(2,1fr);} .footer-copyright{grid-column:span 2;} }
+        @media (max-width:480px){ .footer .container{grid-template-columns:1fr;} .footer-copyright{grid-column:span 1;} }
+        .fade-in { opacity:0; transform:translateY(25px); transition:0.8s; }
+        .fade-in.visible { opacity:1; transform:translateY(0); }
+        .section-title { font-size:2.4rem; color:var(--primary); text-align:center; margin-bottom:20px; }
+        .section-sub { text-align:center; color:var(--text-soft); max-width:650px; margin:0 auto 50px; }
+
+        /* Product grid */
+        .grid-4 { display:grid; gap:30px; grid-template-columns:repeat(4,1fr); }
+        @media (max-width:992px){ .grid-4{grid-template-columns:repeat(2,1fr);} }
+        @media (max-width:550px){ .grid-4{grid-template-columns:1fr;} }
+
+        .product-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .product-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
+        .product-img { width:100%; height:220px; object-fit:cover; }
+        .product-info { padding:22px 18px; }
+        .product-info h3 { font-size:1.5rem; color:var(--primary); margin-bottom:8px; }
+        .product-info p { color:var(--text-soft); margin-bottom:15px; }
+        .product-spec { display:flex; gap:20px; font-size:0.9rem; border-top:1px solid #eef2f6; padding-top:12px; }
+
+        /* Modal */
+        .modal {
+            display:none;
+            position:fixed;
+            top:0; left:0; width:100%; height:100%;
+            background:rgba(0,0,0,0.5);
+            align-items:center;
+            justify-content:center;
+            z-index:1000;
+        }
+        .modal.active { display:flex; }
+        .modal-content {
+            background:white;
+            max-width:500px;
+            width:90%;
+            border-radius:var(--border-radius);
+            padding:30px;
+            position:relative;
+            box-shadow:0 20px 40px rgba(0,0,0,0.2);
+        }
+        .modal-close {
+            position:absolute;
+            top:15px; right:20px;
+            font-size:28px;
+            cursor:pointer;
+            color:#aaa;
+        }
+        .modal-close:hover { color:var(--primary); }
+        .modal-content h2 { color:var(--primary); margin-bottom:15px; }
+        .modal-content p { margin-bottom:10px; color:var(--text-soft); }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="container">
+            <div class="logo">AquaFlow Pumps</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="product.html">Products</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <section>
+            <div class="container">
+                <h2 class="section-title fade-in">Our Pump Series</h2>
+                <p class="section-sub fade-in">Click any card to see detailed specifications</p>
+                <div class="grid-4" id="product-grid">
+                    <!-- Product 1 -->
+                    <div class="product-card fade-in" data-id="1">
+                        <img class="product-img" src="https://picsum.photos/id/223/400/250" alt="EcoSub">
+                        <div class="product-info">
+                            <h3>EcoSub 200</h3>
+                            <p>Submersible pump for clean water.</p>
+                            <div class="product-spec">
+                                <span>⚡ 0.75 kW</span>
+                                <span>💧 200 L/min</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product 2 -->
+                    <div class="product-card fade-in" data-id="2">
+                        <img class="product-img" src="https://picsum.photos/id/159/400/250" alt="HydroForce">
+                        <div class="product-info">
+                            <h3>HydroForce 5.5</h3>
+                            <p>Centrifugal industrial pump.</p>
+                            <div class="product-spec">
+                                <span>⚡ 5.5 kW</span>
+                                <span>💧 800 L/min</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product 3 -->
+                    <div class="product-card fade-in" data-id="3">
+                        <img class="product-img" src="https://picsum.photos/id/306/400/250" alt="SolarFlow">
+                        <div class="product-info">
+                            <h3>SolarFlow 1.2</h3>
+                            <p>Solar‑powered surface pump.</p>
+                            <div class="product-spec">
+                                <span>☀️ 1.2 kWp</span>
+                                <span>💧 150 L/min</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product 4 -->
+                    <div class="product-card fade-in" data-id="4">
+                        <img class="product-img" src="https://picsum.photos/id/180/400/250" alt="MultiPress">
+                        <div class="product-info">
+                            <h3>MultiPress M9</h3>
+                            <p>Multi‑stage pressure pump.</p>
+                            <div class="product-spec">
+                                <span>⚡ 2.2 kW</span>
+                                <span>💧 350 L/min</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product 5 -->
+                    <div class="product-card fade-in" data-id="5">
+                        <img class="product-img" src="https://picsum.photos/id/20/400/250" alt="DrainPro">
+                        <div class="product-info">
+                            <h3>DrainPro 300</h3>
+                            <p>Dewatering pump for construction.</p>
+                            <div class="product-spec">
+                                <span>⚡ 1.5 kW</span>
+                                <span>💧 400 L/min</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product 6 -->
+                    <div class="product-card fade-in" data-id="6">
+                        <img class="product-img" src="https://picsum.photos/id/26/400/250" alt="ChemFlow">
+                        <div class="product-info">
+                            <h3>ChemFlow 10</h3>
+                            <p>Chemical resistant pump.</p>
+                            <div class="product-spec">
+                                <span>⚡ 3.0 kW</span>
+                                <span>💧 200 L/min</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product 7 -->
+                    <div class="product-card fade-in" data-id="7">
+                        <img class="product-img" src="https://picsum.photos/id/42/400/250" alt="FireFighter">
+                        <div class="product-info">
+                            <h3>FireFighter 100</h3>
+                            <p>High‑pressure fire pump.</p>
+                            <div class="product-spec">
+                                <span>⚡ 7.5 kW</span>
+                                <span>💧 600 L/min</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product 8 -->
+                    <div class="product-card fade-in" data-id="8">
+                        <img class="product-img" src="https://picsum.photos/id/1043/400/250" alt="FountainJet">
+                        <div class="product-info">
+                            <h3>FountainJet</h3>
+                            <p>Decorative fountain pump.</p>
+                            <div class="product-spec">
+                                <span>⚡ 0.37 kW</span>
+                                <span>💧 80 L/min</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal for product details -->
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <span class="modal-close" id="closeModal">&times;</span>
+            <h2 id="modalTitle">Product Detail</h2>
+            <p id="modalDesc">Detailed description here.</p>
+            <p><strong>Power:</strong> <span id="modalPower"></span></p>
+            <p><strong>Flow rate:</strong> <span id="modalFlow"></span></p>
+            <p><strong>Applications:</strong> <span id="modalApps">Agriculture, Industry</span></p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-col">
+                <h4>AquaFlow</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Products</h4>
+                <ul>
+                    <li><a href="product.html?cat=submersible">Submersible</a></li>
+                    <li><a href="product.html?cat=centrifugal">Centrifugal</a></li>
+                    <li><a href="product.html?cat=solar">Solar</a></li>
+                    <li><a href="product.html?cat=multistage">Multi‑stage</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Applications</h4>
+                <ul>
+                    <li><a href="#">Agriculture</a></li>
+                    <li><a href="#">Industrial</a></li>
+                    <li><a href="#">Residential</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Manuals</a></li>
+                </ul>
+            </div>
+            <div class="footer-copyright">© 2025 AquaFlow Pumps</div>
+        </div>
+    </footer>
+
+    <script>
+        // Fade-in
+        (function() {
+            document.addEventListener('DOMContentLoaded', function() {
+                const faders = document.querySelectorAll('.fade-in');
+                const appearOptions = { threshold: 0.2 };
+                const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+                    entries.forEach(entry => {
+                        if(entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, appearOptions);
+                faders.forEach(f => {
+                    const rect = f.getBoundingClientRect();
+                    if(rect.top < window.innerHeight && rect.bottom > 0) f.classList.add('visible');
+                    else appearOnScroll.observe(f);
+                });
+            });
+        })();
+
+        // Modal product data
+        const productDetails = {
+            1: { title: 'EcoSub 200', desc: 'Energy‑efficient submersible pump for clean water. Ideal for wells, tanks, and irrigation.', power: '0.75 kW', flow: '200 L/min', apps: 'Residential, Agriculture' },
+            2: { title: 'HydroForce 5.5', desc: 'Heavy‑duty centrifugal pump for industrial circulation, cooling, and water transfer.', power: '5.5 kW', flow: '800 L/min', apps: 'Industrial' },
+            3: { title: 'SolarFlow 1.2', desc: 'Solar‑powered surface pump with MPPT controller. Perfect for off‑grid locations.', power: '1.2 kWp', flow: '150 L/min', apps: 'Agriculture, Remote areas' },
+            4: { title: 'MultiPress M9', desc: 'Multi‑stage vertical pump providing constant pressure for high‑rise buildings.', power: '2.2 kW', flow: '350 L/min', apps: 'Residential, Commercial' },
+            5: { title: 'DrainPro 300', desc: 'Dewatering pump designed for construction sites and flood control.', power: '1.5 kW', flow: '400 L/min', apps: 'Construction' },
+            6: { title: 'ChemFlow 10', desc: 'Corrosion‑resistant pump for chemicals and aggressive fluids.', power: '3.0 kW', flow: '200 L/min', apps: 'Chemical industry' },
+            7: { title: 'FireFighter 100', desc: 'High‑pressure pump for firefighting systems.', power: '7.5 kW', flow: '600 L/min', apps: 'Fire protection' },
+            8: { title: 'FountainJet', desc: 'Quiet, energy‑saving pump for fountains and water features.', power: '0.37 kW', flow: '80 L/min', apps: 'Decorative' }
+        };
+
+        const modal = document.getElementById('productModal');
+        const closeBtn = document.getElementById('closeModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDesc = document.getElementById('modalDesc');
+        const modalPower = document.getElementById('modalPower');
+        const modalFlow = document.getElementById('modalFlow');
+        const modalApps = document.getElementById('modalApps');
+
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const id = this.dataset.id;
+                const data = productDetails[id];
+                if(data) {
+                    modalTitle.textContent = data.title;
+                    modalDesc.textContent = data.desc;
+                    modalPower.textContent = data.power;
+                    modalFlow.textContent = data.flow;
+                    modalApps.textContent = data.apps;
+                }
+                modal.classList.add('active');
+            });
+        });
+
+        closeBtn.addEventListener('click', () => modal.classList.remove('active'));
+        window.addEventListener('click', (e) => { if(e.target === modal) modal.classList.remove('active'); });
+    </script>
+</body>
+</html>

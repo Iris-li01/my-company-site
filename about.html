@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - AquaFlow Pumps</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        /* GLOBAL STYLES (same as before, keep consistent) */
+        * { margin:0; padding:0; box-sizing:border-box; }
+        :root { --primary:#2A5C82; --primary-light:#3a70a0; --bg-light:#F4F7FB; --white:#fff; --text-dark:#1e2b37; --text-soft:#4a5a68; --border-radius:18px; }
+        body { font-family:'Inter', sans-serif; background:var(--bg-light); color:var(--text-dark); line-height:1.5; }
+        .container { max-width:1280px; margin:0 auto; padding:0 24px; }
+        section { padding:80px 0; }
+        .navbar { background:rgba(255,255,255,0.85); backdrop-filter:blur(8px); padding:12px 0; position:sticky; top:0; }
+        .navbar .container { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; }
+        .logo { font-size:1.8rem; font-weight:700; color:var(--primary); }
+        .nav-links { display:flex; gap:2rem; list-style:none; }
+        .nav-links a { text-decoration:none; font-weight:500; color:var(--text-dark); }
+        .nav-links a:hover { color:var(--primary); }
+        @media (max-width:700px){ .navbar .container{flex-direction:column;} .nav-links{flex-wrap:wrap;} }
+        .footer { background:var(--primary); color:white; padding:50px 0 30px; margin-top:40px; }
+        .footer .container { display:grid; grid-template-columns:repeat(4,1fr); gap:30px; }
+        .footer-col h4 { font-size:1.2rem; margin-bottom:20px; padding-bottom:10px; border-bottom:2px solid rgba(255,255,255,0.2); }
+        .footer-col ul { list-style:none; }
+        .footer-col ul li { margin-bottom:10px; }
+        .footer-col ul li a { color:rgba(255,255,255,0.8); text-decoration:none; }
+        .footer-col ul li a:hover { color:white; }
+        .footer-copyright { grid-column:span 4; text-align:center; margin-top:40px; padding-top:20px; border-top:1px solid rgba(255,255,255,0.15); }
+        @media (max-width:768px){ .footer .container{grid-template-columns:repeat(2,1fr);} .footer-copyright{grid-column:span 2;} }
+        .fade-in { opacity:0; transform:translateY(25px); transition:0.8s; }
+        .fade-in.visible { opacity:1; transform:translateY(0); }
+        .section-title { font-size:2.4rem; color:var(--primary); text-align:center; margin-bottom:20px; }
+
+        /* About page specific */
+        .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:center; }
+        .about-text p { margin:20px 0; color:var(--text-soft); font-size:1.1rem; }
+        .about-image img { width:100%; border-radius:var(--border-radius); }
+        .values { display:flex; gap:30px; margin-top:50px; flex-wrap:wrap; justify-content:center; }
+        .value-item { background:white; padding:30px; border-radius:var(--border-radius); flex:1 1 200px; text-align:center; box-shadow:0 5px 15px rgba(0,0,0,0.02); }
+        .value-item h3 { color:var(--primary); margin-bottom:15px; }
+        .timeline { margin-top:60px; }
+        .timeline-item { display:flex; gap:30px; margin-bottom:30px; background:white; padding:20px; border-radius:var(--border-radius); }
+        .timeline-year { font-weight:700; color:var(--primary); min-width:100px; font-size:1.5rem; }
+        @media (max-width:600px){ .timeline-item{flex-direction:column;gap:10px;} }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="container">
+            <div class="logo">AquaFlow Pumps</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="product.html">Products</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <section>
+            <div class="container">
+                <h2 class="section-title fade-in">About AquaFlow</h2>
+                <div class="about-grid">
+                    <div class="about-text fade-in">
+                        <p>Founded in 2010, AquaFlow has grown into a trusted manufacturer of high‑performance pumps. Our journey began in a small workshop with a passion for fluid engineering. Today, we serve customers in over 30 countries, providing reliable water solutions for agriculture, industry, and homes.</p>
+                        <p>Our mission is to combine German engineering precision with modern manufacturing to deliver durable, energy‑efficient pumps. We believe in innovation, quality, and sustainability.</p>
+                        <p>Every pump we produce undergoes rigorous testing to ensure long‑lasting performance. Our team of engineers continuously researches new materials and smart technologies to reduce energy consumption and environmental impact.</p>
+                    </div>
+                    <div class="about-image fade-in">
+                        <img src="https://picsum.photos/id/106/600/400" alt="Factory">
+                    </div>
+                </div>
+
+                <!-- Company values -->
+                <div class="values">
+                    <div class="value-item fade-in">
+                        <h3>Innovation</h3>
+                        <p>Constantly improving pump efficiency and integrating IoT.</p>
+                    </div>
+                    <div class="value-item fade-in">
+                        <h3>Quality</h3>
+                        <p>ISO‑certified manufacturing with strict quality control.</p>
+                    </div>
+                    <div class="value-item fade-in">
+                        <h3>Sustainability</h3>
+                        <p>Developing solar and energy‑saving solutions.</p>
+                    </div>
+                </div>
+
+                <!-- History timeline -->
+                <div class="timeline">
+                    <h2 class="section-title fade-in" style="margin-top:60px;">Our History</h2>
+                    <div class="timeline-item fade-in">
+                        <div class="timeline-year">2010</div>
+                        <div>AquaFlow founded in Hamburg, Germany. First submersible pump launched.</div>
+                    </div>
+                    <div class="timeline-item fade-in">
+                        <div class="timeline-year">2015</div>
+                        <div>Expanded to international markets; opened R&D center.</div>
+                    </div>
+                    <div class="timeline-item fade-in">
+                        <div class="timeline-year">2020</div>
+                        <div>Introduced solar pump series and smart monitoring system.</div>
+                    </div>
+                    <div class="timeline-item fade-in">
+                        <div class="timeline-year">2025</div>
+                        <div>Now serving 30+ countries with 200+ employees.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-col">
+                <h4>AquaFlow</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Products</h4>
+                <ul>
+                    <li><a href="product.html?cat=submersible">Submersible</a></li>
+                    <li><a href="product.html?cat=centrifugal">Centrifugal</a></li>
+                    <li><a href="product.html?cat=solar">Solar</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Applications</h4>
+                <ul>
+                    <li><a href="#">Agriculture</a></li>
+                    <li><a href="#">Industrial</a></li>
+                    <li><a href="#">Residential</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Manuals</a></li>
+                </ul>
+            </div>
+            <div class="footer-copyright">© 2025 AquaFlow Pumps</div>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            document.addEventListener('DOMContentLoaded', function() {
+                const faders = document.querySelectorAll('.fade-in');
+                const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+                    entries.forEach(entry => {
+                        if(entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.2 });
+                faders.forEach(f => {
+                    const rect = f.getBoundingClientRect();
+                    if(rect.top < window.innerHeight && rect.bottom > 0) f.classList.add('visible');
+                    else appearOnScroll.observe(f);
+                });
+            });
+        })();
+    </script>
+</body>
+</html>

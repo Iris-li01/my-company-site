@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - AquaFlow Pumps</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        /* GLOBAL STYLES (same as index) */
+        * { margin:0; padding:0; box-sizing:border-box; }
+        :root { --primary:#2A5C82; --primary-light:#3a70a0; --bg-light:#F4F7FB; --white:#fff; --text-dark:#1e2b37; --text-soft:#4a5a68; --border-radius:18px; --border-radius-sm:12px; }
+        body { font-family:'Inter', sans-serif; background:var(--bg-light); color:var(--text-dark); line-height:1.5; }
+        .container { max-width:1280px; margin:0 auto; padding:0 24px; }
+        section { padding:80px 0; }
+        .navbar { background:rgba(255,255,255,0.85); backdrop-filter:blur(8px); padding:12px 0; position:sticky; top:0; }
+        .navbar .container { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; }
+        .logo { font-size:1.8rem; font-weight:700; color:var(--primary); }
+        .nav-links { display:flex; gap:2rem; list-style:none; }
+        .nav-links a { text-decoration:none; font-weight:500; color:var(--text-dark); }
+        .nav-links a:hover { color:var(--primary); }
+        @media (max-width:700px){ .navbar .container{flex-direction:column;} .nav-links{flex-wrap:wrap;} }
+        .btn { display:inline-block; background:var(--primary); color:white; padding:12px 32px; border-radius:50px; text-decoration:none; border:none; cursor:pointer; }
+        .btn:hover { background:var(--primary-light); }
+        .footer { background:var(--primary); color:white; padding:50px 0 30px; margin-top:40px; }
+        .footer .container { display:grid; grid-template-columns:repeat(4,1fr); gap:30px; }
+        .footer-col h4 { font-size:1.2rem; margin-bottom:20px; padding-bottom:10px; border-bottom:2px solid rgba(255,255,255,0.2); }
+        .footer-col ul { list-style:none; }
+        .footer-col ul li { margin-bottom:10px; }
+        .footer-col ul li a { color:rgba(255,255,255,0.8); text-decoration:none; }
+        .footer-col ul li a:hover { color:white; }
+        .footer-copyright { grid-column:span 4; text-align:center; margin-top:40px; padding-top:20px; border-top:1px solid rgba(255,255,255,0.15); }
+        @media (max-width:768px){ .footer .container{grid-template-columns:repeat(2,1fr);} .footer-copyright{grid-column:span 2;} }
+        .fade-in { opacity:0; transform:translateY(25px); transition:0.8s; }
+        .fade-in.visible { opacity:1; transform:translateY(0); }
+        .section-title { font-size:2.4rem; color:var(--primary); text-align:center; margin-bottom:20px; }
+        .section-sub { text-align:center; color:var(--text-soft); max-width:650px; margin:0 auto 50px; }
+
+        /* Contact page specific */
+        .contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:40px; }
+        .contact-info { background:white; padding:40px; border-radius:var(--border-radius); box-shadow:0 5px 15px rgba(0,0,0,0.02); }
+        .contact-info h3 { color:var(--primary); margin-bottom:20px; }
+        .info-item { display:flex; align-items:center; gap:15px; margin-bottom:25px; }
+        .info-item .icon { font-size:1.8rem; color:var(--primary); }
+        .contact-form { background:white; border-radius:var(--border-radius); padding:40px; box-shadow:0 5px 15px rgba(0,0,0,0.02); }
+        .form-group { margin-bottom:20px; }
+        .form-group input, .form-group textarea {
+            width:100%; padding:16px 20px; border:1px solid #e2e8f0; border-radius:var(--border-radius-sm);
+            font-family:'Inter',sans-serif; font-size:1rem; background:#f9fcff;
+        }
+        .form-group input:focus, .form-group textarea:focus { outline:none; border-color:var(--primary); }
+        .map-placeholder {
+            background:#d1d9e6; height:300px; border-radius:var(--border-radius);
+            display:flex; align-items:center; justify-content:center; color:var(--text-soft); font-size:1.2rem;
+            margin-top:40px;
+        }
+        @media (max-width:800px){ .contact-grid{grid-template-columns:1fr;} }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="container">
+            <div class="logo">AquaFlow Pumps</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="product.html">Products</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <section>
+            <div class="container">
+                <h2 class="section-title fade-in">Get In Touch</h2>
+                <p class="section-sub fade-in">We're here to help with any questions or inquiries</p>
+
+                <div class="contact-grid">
+                    <!-- Contact information -->
+                    <div class="contact-info fade-in">
+                        <h3>Contact Information</h3>
+                        <div class="info-item">
+                            <span class="icon">📍</span>
+                            <div>123 Water Street, Hamburg, Germany</div>
+                        </div>
+                        <div class="info-item">
+                            <span class="icon">📞</span>
+                            <div>+49 40 1234 5678</div>
+                        </div>
+                        <div class="info-item">
+                            <span class="icon">✉️</span>
+                            <div>info@aquaflow.com</div>
+                        </div>
+                        <div class="info-item">
+                            <span class="icon">🕒</span>
+                            <div>Mon - Fri: 8:00 - 18:00</div>
+                        </div>
+                    </div>
+
+                    <!-- Contact form -->
+                    <div class="contact-form fade-in">
+                        <form onsubmit="event.preventDefault(); alert('Thank you! We will reply soon.');">
+                            <div class="form-group">
+                                <input type="text" placeholder="Your Name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" placeholder="Email Address" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" placeholder="Subject">
+                            </div>
+                            <div class="form-group">
+                                <textarea placeholder="Your Message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn" style="width:100%;">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Map placeholder -->
+                <div class="map-placeholder fade-in">
+                    🗺️ Google Map will be embedded here (Hamburg Office)
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-col">
+                <h4>AquaFlow</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Products</h4>
+                <ul>
+                    <li><a href="product.html?cat=submersible">Submersible</a></li>
+                    <li><a href="product.html?cat=centrifugal">Centrifugal</a></li>
+                    <li><a href="product.html?cat=solar">Solar</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Applications</h4>
+                <ul>
+                    <li><a href="#">Agriculture</a></li>
+                    <li><a href="#">Industrial</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Manuals</a></li>
+                </ul>
+            </div>
+            <div class="footer-copyright">© 2025 AquaFlow Pumps</div>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            document.addEventListener('DOMContentLoaded', function() {
+                const faders = document.querySelectorAll('.fade-in');
+                const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+                    entries.forEach(entry => {
+                        if(entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.2 });
+                faders.forEach(f => {
+                    const rect = f.getBoundingClientRect();
+                    if(rect.top < window.innerHeight && rect.bottom > 0) f.classList.add('visible');
+                    else appearOnScroll.observe(f);
+                });
+            });
+        })();
+    </script>
+</body>
+</html>
