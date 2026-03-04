@@ -487,6 +487,24 @@
                 <h2 class="section-title fade-in">Get In Touch</h2>
                 <p class="section-sub fade-in">We’d love to hear about your pumping needs</p>
                 <div class="contact-form fade-in">
+                    <!-- 首页和联系页面的表单都这样修改 -->
+                    <form action="https://formspree.io/f/meelykyp" method="POST">
+                        <!-- 隐藏字段：设置邮件主题 -->
+                        <input type="hidden" name="_subject" value="AquaFlow网站新消息">
+                        <!-- 隐藏字段：设置回复地址（使用用户的邮箱） -->
+                        <input type="hidden" name="_replyto" value="%email">
+    
+                        <div class="form-group">
+                            <input type="text" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="Email Address" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
                     <form onsubmit="event.preventDefault(); alert('Thank you! We will reply soon.');">
                         <div class="form-group">
                             <input type="text" placeholder="Your name" required>
@@ -587,6 +605,7 @@
 </body>
 
 </html>
+
 
 
 
