@@ -590,9 +590,17 @@
             });
         });
     </script>
+    <script src="https://cdn.staticfile.net/translate.js/3.15.6/translate.min.js"></script>
+    <script>
+    // 设置使用 SiliconFlow 的翻译通道（免费，无需额外配置）
+    translate.service.use('siliconflow'); 
+    // 执行翻译，这会触发页面底部出现一个默认的语言选择下拉框
+    translate.execute(); 
+    </script>
 </body>
 
 </html>
+
 
 
 
