@@ -621,40 +621,41 @@
         });
     </script>
     <!-- 在页面的 </body> 前添加 -->
-<script src="https://res.zvo.cn/translate/translate.js"></script>
-<script>
-// 确保在 DOM 加载完成后执行
-document.addEventListener('DOMContentLoaded', function() {
-    // 1. 设置当前网页的语种（您的网站是英文）
-    translate.language.setLocal('english');
+    <script src="https://res.zvo.cn/translate/translate.js"></script>
+    <script>
+    // 确保在 DOM 加载完成后执行
+    document.addEventListener('DOMContentLoaded', function() {
+        // 1. 设置当前网页的语种（您的网站是英文）
+        translate.language.setLocal('english');
     
-    // 2. 设置可选语言（法、德、意、西、日 + 英语）
-    translate.selectLanguageTag.languages = 'english,french,german,italian,spanish,japanese';
+        // 2. 设置可选语言（法、德、意、西、日 + 英语）
+        translate.selectLanguageTag.languages = 'english,french,german,italian,spanish,japanese';
     
-    // 3. 尝试多种服务通道（按优先级）
-    try {
-        translate.service.use('client.edge');  // 微软Edge翻译
-    } catch(e) {
+        // 3. 尝试多种服务通道（按优先级）
         try {
-            translate.service.use('client.baidu'); // 百度翻译
+            translate.service.use('client.edge');  // 微软Edge翻译
         } catch(e) {
-            translate.service.use('client.google'); // 谷歌翻译
+            try {
+                translate.service.use('client.baidu'); // 百度翻译
+            } catch(e) {
+                translate.service.use('client.google'); // 谷歌翻译
+            }
         }
-    }
     
-    // 4. 确保选择器显示（默认为true，但显式设置一下）
-    translate.selectLanguageTag.show = true;
+        // 4. 确保选择器显示（默认为true，但显式设置一下）
+        translate.selectLanguageTag.show = true;
 
-    // 在 translate.execute() 之前添加
-    translate.selectLanguageTag.documentId = 'languageSelector'; // 对应上面的id
+        // 在 translate.execute() 之前添加
+        translate.selectLanguageTag.documentId = 'languageSelector'; // 对应上面的id
     
-    // 5. 执行翻译初始化
-    translate.execute();
-});
-</script>
+        // 5. 执行翻译初始化
+        translate.execute();
+    });
+    </script>
 </body>
 
 </html>
+
 
 
 
