@@ -590,17 +590,39 @@
             });
         });
     </script>
-    <script src="https://cdn.staticfile.net/translate.js/3.15.6/translate.min.js"></script>
-    <script>
-    // ✅ 正确的完整初始化代码
-    translate.language.setLocal('english');      // 设置当前网页的语种（您的网站是英文）
-    translate.selectLanguageTag.languages = 'english,french,german,italian,spanish,japanese'; // 设置可选语言
-    translate.service.use('client.google');        // 使用 SiliconFlow 通道
-    translate.execute();                          // 执行初始化，显示选择框
-    </script>
+    <!-- 在页面的 </body> 前添加 -->
+<script src="https://res.zvo.cn/translate/translate.js"></script>
+<script>
+// 确保在 DOM 加载完成后执行
+document.addEventListener('DOMContentLoaded', function() {
+    // 1. 设置当前网页的语种（您的网站是英文）
+    translate.language.setLocal('english');
+    
+    // 2. 设置可选语言（法、德、意、西、日 + 英语）
+    translate.selectLanguageTag.languages = 'english,french,german,italian,spanish,japanese';
+    
+    // 3. 尝试多种服务通道（按优先级）
+    try {
+        translate.service.use('client.edge');  // 微软Edge翻译
+    } catch(e) {
+        try {
+            translate.service.use('client.baidu'); // 百度翻译
+        } catch(e) {
+            translate.service.use('client.google'); // 谷歌翻译
+        }
+    }
+    
+    // 4. 确保选择器显示（默认为true，但显式设置一下）
+    translate.selectLanguageTag.show = true;
+    
+    // 5. 执行翻译初始化
+    translate.execute();
+});
+</script>
 </body>
 
 </html>
+
 
 
 
