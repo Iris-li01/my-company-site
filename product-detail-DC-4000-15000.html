@@ -73,6 +73,17 @@
             font-size: 1rem;
         }
         .nav-links a:hover { color: var(--primary); }
+        /* 电话样式 */
+        .phone-number {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 0.95rem;
+            white-space: nowrap;
+            background: rgba(34,93,181,0.05);
+            padding: 4px 12px;
+            border-radius: 30px;
+            border: 1px solid rgba(34,93,181,0.2);
+        }
         @media (max-width: 700px) {
             .navbar .container { flex-direction: column; gap: 12px; }
             .nav-links { flex-wrap: wrap; justify-content: center; gap: 1.2rem 1.8rem; }
@@ -610,6 +621,8 @@
                 <li><a href="about.html">About</a></li>
                 <li><a href="blog.html">Blog</a></li>
                 <li><a href="contact.html">Contact</a></li>
+                <!-- 联系电话 -->
+                <li><span class="phone-number">📞 +86-13630829337</span></li>
             </ul>
         </div>
     </header>
@@ -989,3 +1002,4 @@
     </script>
 </body>
 </html>
+
