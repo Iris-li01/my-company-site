@@ -326,47 +326,13 @@
             });
         })();
 
-        // Modal product data
-        const productDetails = {
-            1: { title: 'EcoSub 200', desc: 'Energy‑efficient submersible pump for clean water. Ideal for wells, tanks, and irrigation.', power: '0.75 kW', flow: '200 L/min', apps: 'Residential, Agriculture' },
-            2: { title: 'HydroForce 5.5', desc: 'Heavy‑duty centrifugal pump for industrial circulation, cooling, and water transfer.', power: '5.5 kW', flow: '800 L/min', apps: 'Industrial' },
-            3: { title: 'SolarFlow 1.2', desc: 'Solar‑powered surface pump with MPPT controller. Perfect for off‑grid locations.', power: '1.2 kWp', flow: '150 L/min', apps: 'Agriculture, Remote areas' },
-            4: { title: 'MultiPress M9', desc: 'Multi‑stage vertical pump providing constant pressure for high‑rise buildings.', power: '2.2 kW', flow: '350 L/min', apps: 'Residential, Commercial' },
-            5: { title: 'DrainPro 300', desc: 'Dewatering pump designed for construction sites and flood control.', power: '1.5 kW', flow: '400 L/min', apps: 'Construction' },
-            6: { title: 'ChemFlow 10', desc: 'Corrosion‑resistant pump for chemicals and aggressive fluids.', power: '3.0 kW', flow: '200 L/min', apps: 'Chemical industry' },
-            7: { title: 'FireFighter 100', desc: 'High‑pressure pump for firefighting systems.', power: '7.5 kW', flow: '600 L/min', apps: 'Fire protection' },
-            8: { title: 'FountainJet', desc: 'Quiet, energy‑saving pump for fountains and water features.', power: '0.37 kW', flow: '80 L/min', apps: 'Decorative' }
-        };
-
-        const modal = document.getElementById('productModal');
-        const closeBtn = document.getElementById('closeModal');
-        const modalTitle = document.getElementById('modalTitle');
-        const modalDesc = document.getElementById('modalDesc');
-        const modalPower = document.getElementById('modalPower');
-        const modalFlow = document.getElementById('modalFlow');
-        const modalApps = document.getElementById('modalApps');
-
-        document.querySelectorAll('.product-card').forEach(card => {
-            card.addEventListener('click', function() {
-                const id = this.dataset.id;
-                const data = productDetails[id];
-                if(data) {
-                    modalTitle.textContent = data.title;
-                    modalDesc.textContent = data.desc;
-                    modalPower.textContent = data.power;
-                    modalFlow.textContent = data.flow;
-                    modalApps.textContent = data.apps;
-                }
-                modal.classList.add('active');
-            });
-        });
-
         closeBtn.addEventListener('click', () => modal.classList.remove('active'));
         window.addEventListener('click', (e) => { if(e.target === modal) modal.classList.remove('active'); });
     </script>
 </body>
 
 </html>
+
 
 
 
