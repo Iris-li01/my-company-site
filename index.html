@@ -595,12 +595,13 @@
     // ✅ 正确的完整初始化代码
     translate.language.setLocal('english');      // 设置当前网页的语种（您的网站是英文）
     translate.selectLanguageTag.languages = 'english,french,german,italian,spanish,japanese'; // 设置可选语言
-    translate.service.use('siliconflow');        // 使用 SiliconFlow 通道
+    translate.service.use('client.google');        // 使用 SiliconFlow 通道
     translate.execute();                          // 执行初始化，显示选择框
     </script>
 </body>
 
 </html>
+
 
 
 
