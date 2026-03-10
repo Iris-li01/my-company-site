@@ -530,7 +530,33 @@
                 grid-template-columns: repeat(2, 1fr);
             }
         }
-
+        
+        /* 原有特性与应用网格 */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .feature-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+        }
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        .feature-card h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        .feature-card p {
+            color: var(--text-soft);
+            font-size: 0.95rem;
+        }
 
         .related-grid {
             display: grid;
@@ -1016,6 +1042,7 @@
     </script>
 </body>
 </html>
+
 
 
 
