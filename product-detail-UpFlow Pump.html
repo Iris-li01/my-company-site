@@ -65,6 +65,8 @@
             display: flex;
             gap: 2rem;
             list-style: none;
+            align-items: center;
+            flex-wrap: wrap;
         }
         .nav-links a {
             text-decoration: none;
@@ -99,6 +101,24 @@
             padding: 4px 12px;
             border-radius: 30px;
             border: 1px solid rgba(34,93,181,0.2);
+        }
+        .whatsapp-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: #25D366;
+            color: white;
+            transition: all 0.2s;
+        }
+        .whatsapp-link:hover {
+            background-color: #128C7E;
+            transform: scale(1.05);
+        }
+        .whatsapp-link i {
+            font-size: 1.3rem;
         }
         @media (max-width: 700px) {
             .navbar .container { flex-direction: column; gap: 12px; }
@@ -640,7 +660,10 @@
                 <!-- 语言选择器容器 -->
                 <li><span id="languageSelector"></span></li>
                 <!-- 联系电话 -->
-                <li><span class="phone-number">📞 +86-13630829337</span></li>
+                <li style="display: flex; align-items: center;">
+                    <a href="https://wa.me/8613630829337" target="_blank" class="whatsapp-link"><i class="fab fa-whatsapp"></i></a>
+                    <span class="phone-number" style="margin-left: 8px;">+86-13630829337</span>
+                </li>
             </ul>
         </div>
     </header>
@@ -1043,6 +1066,7 @@
     </script>
 </body>
 </html>
+
 
 
 
