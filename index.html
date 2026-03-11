@@ -539,7 +539,7 @@
                 <p class="section-sub fade-in">We’d love to hear about your pumping needs</p>
                 <div class="contact-form fade-in">
                     <!-- 首页和联系页面的表单都这样修改 -->
-                    <form action="https://formspree.io/f/meelykyp" method="POST">
+                    <form action="https://formspree.io/f/meelykyp" method="POST" novalidate>
                         <!-- 隐藏字段：设置邮件主题 -->
                         <input type="hidden" name="_subject" value="AquaFlow网站新消息">
                         <!-- 隐藏字段：设置回复地址（使用用户的邮箱） -->
@@ -673,28 +673,54 @@
         translate.execute();
     });
     </script>
-    <!-- 自定义表单验证消息为英文 -->
+    <!-- 自定义表单验证消息为英文 - 使用 submit 事件完全接管验证 -->
     <script>
         (function() {
             document.addEventListener('DOMContentLoaded', function() {
-                // 定位到 Formspree 表单中的必填字段
                 const form = document.querySelector('form[action*="formspree"]');
                 if (!form) return;
-                const requiredFields = form.querySelectorAll('input[required], textarea[required]');
-                requiredFields.forEach(field => {
-                    field.addEventListener('invalid', function(e) {
-                        e.preventDefault(); // 阻止默认气泡（避免同时显示两个）
-                        if (this.validity.valueMissing) {
-                            this.setCustomValidity('Please fill out this field.');
-                        } else if (this.validity.typeMismatch && this.type === 'email') {
-                            this.setCustomValidity('Please enter a valid email address.');
-                        }
-                        // 让浏览器显示自定义消息
-                        this.reportValidity();
+
+                form.addEventListener('submit', function(e) {
+                    // 阻止默认提交行为，我们先验证
+                    e.preventDefault();
+
+                    const nameInput = form.querySelector('input[name="name"]');
+                    const emailInput = form.querySelector('input[name="email"]');
+                    const messageInput = form.querySelector('textarea[name="message"]');
+                    let isValid = true;
+
+                    // 清空所有自定义错误（防止残留）
+                    [nameInput, emailInput, messageInput].forEach(field => {
+                        field.setCustomValidity('');
                     });
-                    field.addEventListener('input', function() {
-                        this.setCustomValidity(''); // 用户输入时清除自定义错误
-                    });
+
+                    // 检查姓名
+                    if (!nameInput.value.trim()) {
+                        nameInput.setCustomValidity('Please fill out this field.');
+                        nameInput.reportValidity();
+                        isValid = false;
+                    }
+                    // 检查邮箱
+                    else if (!emailInput.value.trim()) {
+                        emailInput.setCustomValidity('Please fill out this field.');
+                        emailInput.reportValidity();
+                        isValid = false;
+                    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value)) {
+                        emailInput.setCustomValidity('Please enter a valid email address.');
+                        emailInput.reportValidity();
+                        isValid = false;
+                    }
+                    // 检查留言
+                    else if (!messageInput.value.trim()) {
+                        messageInput.setCustomValidity('Please fill out this field.');
+                        messageInput.reportValidity();
+                        isValid = false;
+                    }
+
+                    // 如果全部通过，则手动提交表单
+                    if (isValid) {
+                        form.submit(); // 直接提交，会跳转到 Formspree 感谢页
+                    }
                 });
             });
         })();
@@ -702,6 +728,7 @@
 </body>
 
 </html>
+
 
 
 
