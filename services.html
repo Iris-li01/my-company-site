@@ -8,6 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for WhatsApp icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* 添加一些样式让它看起来更美观 */
         #languageSelector select {
@@ -35,6 +37,24 @@
             border-radius: 30px;
             border: 1px solid rgba(34,93,181,0.2);
         }
+        .whatsapp-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: #25D366;
+            color: white;
+            transition: all 0.2s;
+        }
+        .whatsapp-link:hover {
+            background-color: #128C7E;
+            transform: scale(1.05);
+        }
+        .whatsapp-link i {
+            font-size: 1.3rem;
+        }
         /* GLOBAL STYLES (same as index) */
         * { margin:0; padding:0; box-sizing:border-box; }
         :root { --primary:#225db5; --primary-light:#3a70a0; --bg-light:#F4F7FB; --white:#fff; --text-dark:#1e2b37; --text-soft:#4a5a68; --border-radius:18px; }
@@ -44,7 +64,7 @@
         .navbar { background:rgba(255,255,255,0.85); backdrop-filter:blur(8px); padding:12px 0; position:sticky; top:0; }
         .navbar .container { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; }
         .logo { font-size:1.8rem; font-weight:700; color:var(--primary); }
-        .nav-links { display:flex; gap:2rem; list-style:none; }
+        .nav-links { display:flex; gap:2rem; list-style:none; align-items: center; flex-wrap: wrap; }
         .nav-links a { text-decoration:none; font-weight:500; color:var(--text-dark); }
         .nav-links a:hover { color:var(--primary); }
         @media (max-width:700px){ .navbar .container{flex-direction:column;} .nav-links{flex-wrap:wrap;} }
@@ -95,7 +115,10 @@
                 <!-- 语言选择器容器 -->
                 <li><span id="languageSelector"></span></li>
                 <!-- 联系电话 -->
-                <li><span class="phone-number">📞 +86-13630829337</span></li>
+                <li style="display: flex; align-items: center;">
+                    <a href="https://wa.me/8613630829337" target="_blank" class="whatsapp-link"><i class="fab fa-whatsapp"></i></a>
+                    <span class="phone-number" style="margin-left: 8px;">+86-13630829337</span>
+                </li>
             </ul>
         </div>
     </header>
@@ -232,6 +255,7 @@
 </body>
 
 </html>
+
 
 
 
