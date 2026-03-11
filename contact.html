@@ -274,9 +274,36 @@
         translate.execute();
     });
     </script>
+    <!-- 自定义表单验证消息为英文 -->
+    <script>
+        (function() {
+            document.addEventListener('DOMContentLoaded', function() {
+                // 定位到 Formspree 表单中的必填字段
+                const form = document.querySelector('form[action*="formspree"]');
+                if (!form) return;
+                const requiredFields = form.querySelectorAll('input[required], textarea[required]');
+                requiredFields.forEach(field => {
+                    field.addEventListener('invalid', function(e) {
+                        e.preventDefault(); // 阻止默认气泡（避免同时显示两个）
+                        if (this.validity.valueMissing) {
+                            this.setCustomValidity('Please fill out this field.');
+                        } else if (this.validity.typeMismatch && this.type === 'email') {
+                            this.setCustomValidity('Please enter a valid email address.');
+                        }
+                        // 让浏览器显示自定义消息
+                        this.reportValidity();
+                    });
+                    field.addEventListener('input', function() {
+                        this.setCustomValidity(''); // 用户输入时清除自定义错误
+                    });
+                });
+            });
+        })();
+    </script>
 </body>
 
 </html>
+
 
 
 
