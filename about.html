@@ -87,81 +87,169 @@
         .values { display:flex; gap:30px; margin-top:50px; flex-wrap:wrap; justify-content:center; }
         .value-item { background:white; padding:30px; border-radius:var(--border-radius); flex:1 1 200px; text-align:center; box-shadow:0 5px 15px rgba(0,0,0,0.02); }
         .value-item h3 { color:var(--primary); margin-bottom:15px; }
-        /* 企业发展历程专用样式 */
-.history-section {
+        /* ========== 企业发展历程（曲折时间线）样式 ========== */
+.timeline-section {
     background-color: var(--bg-light);
     padding: 80px 0;
+    position: relative;
+    overflow: hidden;
 }
-.history-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 30px;
-    margin-top: 40px;
+.timeline {
+    position: relative;
+    max-width: 1000px;
+    margin: 40px auto 0;
+    padding: 20px 0;
 }
-.history-card {
+/* 中间虚线 */
+.timeline-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    background: repeating-linear-gradient(to bottom, var(--primary) 0px, var(--primary) 8px, transparent 8px, transparent 16px);
+    transform: translateX(-50%);
+    z-index: 1;
+}
+/* 每个时间节点 */
+.timeline-item {
+    position: relative;
+    width: 50%;
+    padding: 0 40px 50px 40px;
+    z-index: 2;
+    display: flex;
+    align-items: flex-start;
+}
+.timeline-item.left {
+    left: 0;
+    padding-right: 60px;
+    justify-content: flex-end;
+}
+.timeline-item.right {
+    left: 50%;
+    padding-left: 60px;
+    justify-content: flex-start;
+}
+/* 内容卡片 */
+.timeline-content {
     background: var(--white);
     border-radius: var(--border-radius);
-    overflow: hidden;
     box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    width: 100%;
+    max-width: 380px;
     transition: transform 0.3s, box-shadow 0.3s;
-    position: relative;
 }
-.history-card:hover {
-    transform: translateY(-6px);
+.timeline-content:hover {
+    transform: translateY(-5px);
     box-shadow: var(--shadow-hover);
 }
-.year-badge {
+/* 图片区域 */
+.timeline-img {
+    position: relative;
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+}
+.timeline-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+.timeline-content:hover .timeline-img img {
+    transform: scale(1.05);
+}
+/* 年份标签（位于图片左上角） */
+.timeline-year {
     position: absolute;
     top: 15px;
     left: 15px;
     background: var(--primary);
     color: white;
     font-weight: 700;
-    font-size: 1.2rem;
-    padding: 6px 16px;
-    border-radius: 30px;
-    z-index: 1;
-    box-shadow: 0 4px 10px rgba(34,93,181,0.2);
+    font-size: 1.4rem;
+    padding: 5px 18px;
+    border-radius: 40px;
+    box-shadow: 0 4px 10px rgba(34,93,181,0.3);
+    z-index: 2;
 }
-.history-img {
-    width: 100%;
-    height: 200px;
-    overflow: hidden;
-}
-.history-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s;
-}
-.history-card:hover .history-img img {
-    transform: scale(1.05);
-}
-.history-desc {
-    padding: 20px 20px 25px;
+/* 描述文字 */
+.timeline-desc {
+    padding: 18px 20px 22px;
     color: var(--text-soft);
     font-size: 0.95rem;
     line-height: 1.6;
 }
-.history-desc p {
+.timeline-desc p {
     margin: 0;
 }
+/* 脚印图标 */
+.timeline-icon {
+    position: absolute;
+    top: 0;
+    width: 40px;
+    height: 40px;
+    background: var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.4rem;
+    box-shadow: 0 4px 8px rgba(34,93,181,0.3);
+    z-index: 3;
+}
+.timeline-item.left .timeline-icon {
+    right: -20px;
+}
+.timeline-item.right .timeline-icon {
+    left: -20px;
+}
 
-/* 响应式调整 */
-@media (max-width: 992px) {
-    .history-grid {
-        grid-template-columns: repeat(2, 1fr);
+/* 响应式：小于768px时变为垂直单列，线变为水平 */
+@media (max-width: 768px) {
+    .timeline-line {
+        left: 30px;
+        width: 2px;
+        height: auto;
+        background: repeating-linear-gradient(to bottom, var(--primary) 0px, var(--primary) 8px, transparent 8px, transparent 16px);
+    }
+    .timeline-item {
+        width: 100%;
+        left: 0 !important;
+        padding: 0 0 0 70px !important;
+        margin-bottom: 40px;
+        justify-content: flex-start !important;
+    }
+    .timeline-item.right .timeline-icon,
+    .timeline-item.left .timeline-icon {
+        left: 10px;
+        right: auto;
+    }
+    .timeline-content {
+        max-width: 100%;
+    }
+    .timeline-year {
+        font-size: 1.2rem;
+        padding: 4px 14px;
     }
 }
-@media (max-width: 550px) {
-    .history-grid {
-        grid-template-columns: 1fr;
+@media (max-width: 480px) {
+    .timeline-item {
+        padding-left: 60px !important;
     }
-    .history-section {
-        padding: 60px 0;
+    .timeline-icon {
+        width: 34px;
+        height: 34px;
+        font-size: 1.2rem;
+        left: 5px !important;
+    }
+    .timeline-year {
+        font-size: 1rem;
+        padding: 3px 10px;
     }
 }
-        @media (max-width:600px){ .timeline-item{flex-direction:column;gap:10px;} }
     </style>
 </head>
 <body>
@@ -217,53 +305,74 @@
                 </div>
 
                 <!-- History timeline -->
-                <!-- ========== 企业发展历程模块 ========== -->
-<section class="history-section">
+                <!-- ========== 企业发展历程（曲折时间线） ========== -->
+<section class="timeline-section">
     <div class="container">
-        <h2 class="section-title fade-in">Company Milestones</h2>
-        <p class="section-sub fade-in">Key moments that shaped our journey</p>
-        <div class="history-grid">
-            <!-- 年份 2010 -->
-            <div class="history-card fade-in">
-                <div class="year-badge">2010</div>
-                <div class="history-img">
-                    <img src="https://picsum.photos/id/106/400/300" alt="Foundation">
+        <h2 class="section-title fade-in">Our Journey</h2>
+        <p class="section-sub fade-in">Key milestones that shaped AquaFlow</p>
+
+        <div class="timeline">
+            <!-- 节点 1：2010（左侧） -->
+            <div class="timeline-item left fade-in">
+                <div class="timeline-content">
+                    <div class="timeline-img">
+                        <img src="https://picsum.photos/id/106/400/300" alt="Foundation">
+                        <span class="timeline-year">2010</span>
+                    </div>
+                    <div class="timeline-desc">
+                        <p>AquaFlow founded in Hamburg, Germany. First submersible pump launched, serving local farmers and households.</p>
+                    </div>
                 </div>
-                <div class="history-desc">
-                    <p>AquaFlow founded in Hamburg, Germany. First submersible pump launched, serving local farmers and households.</p>
-                </div>
+                <div class="timeline-icon">👣</div>
             </div>
-            <!-- 年份 2015 -->
-            <div class="history-card fade-in">
-                <div class="year-badge">2015</div>
-                <div class="history-img">
-                    <img src="https://picsum.photos/id/159/400/300" alt="Expansion">
+
+            <!-- 节点 2：2015（右侧） -->
+            <div class="timeline-item right fade-in">
+                <div class="timeline-content">
+                    <div class="timeline-img">
+                        <img src="https://picsum.photos/id/159/400/300" alt="Expansion">
+                        <span class="timeline-year">2015</span>
+                    </div>
+                    <div class="timeline-desc">
+                        <p>Expanded to international markets; opened R&D center and introduced energy‑efficient centrifugal pumps.</p>
+                    </div>
                 </div>
-                <div class="history-desc">
-                    <p>Expanded to international markets; opened R&D center and introduced energy‑efficient centrifugal pumps.</p>
-                </div>
+                <div class="timeline-icon">👣</div>
             </div>
-            <!-- 年份 2020 -->
-            <div class="history-card fade-in">
-                <div class="year-badge">2020</div>
-                <div class="history-img">
-                    <img src="https://picsum.photos/id/306/400/300" alt="Solar Pumps">
+
+            <!-- 节点 3：2020（左侧） -->
+            <div class="timeline-item left fade-in">
+                <div class="timeline-content">
+                    <div class="timeline-img">
+                        <img src="https://picsum.photos/id/306/400/300" alt="Solar Pumps">
+                        <span class="timeline-year">2020</span>
+                    </div>
+                    <div class="timeline-desc">
+                        <p>Launched solar pump series and smart monitoring system, bringing sustainable water solutions worldwide.</p>
+                    </div>
                 </div>
-                <div class="history-desc">
-                    <p>Launched solar pump series and smart monitoring system, bringing sustainable water solutions worldwide.</p>
-                </div>
+                <div class="timeline-icon">👣</div>
             </div>
-            <!-- 年份 2025 -->
-            <div class="history-card fade-in">
-                <div class="year-badge">2025</div>
-                <div class="history-img">
-                    <img src="https://picsum.photos/id/180/400/300" alt="Global Reach">
+
+            <!-- 节点 4：2025（右侧） -->
+            <div class="timeline-item right fade-in">
+                <div class="timeline-content">
+                    <div class="timeline-img">
+                        <img src="https://picsum.photos/id/180/400/300" alt="Global Reach">
+                        <span class="timeline-year">2025</span>
+                    </div>
+                    <div class="timeline-desc">
+                        <p>Now serving 30+ countries with 200+ employees, recognized as a leader in pump innovation.</p>
+                    </div>
                 </div>
-                <div class="history-desc">
-                    <p>Now serving 30+ countries with 200+ employees, recognized as a leader in pump innovation.</p>
-                </div>
+                <div class="timeline-icon">👣</div>
             </div>
+
+            <!-- 中间虚线（由 CSS 绘制） -->
+            <div class="timeline-line"></div>
         </div>
+    </div>
+</section>
     </div>
 </section>
             </div>
