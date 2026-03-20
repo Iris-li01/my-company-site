@@ -251,6 +251,8 @@
             }
         }
         .service{
+            display: flex;
+            gap: 30px
             background: white;
             padding: 30px;
             margin-bottom: 30px;
@@ -258,6 +260,9 @@
             flex: 1 1 200px;
             text-align: center;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.02)
+        }
+        .service h3{
+            color:var(--primary);
         }
         .text-block {
             background: var(--white);
@@ -392,13 +397,13 @@
         </section>
             <div class="container">
                 <div class="service">
-                    <div>
+                    <div class="value-item fade-in">
                         <h3>OEM</h3>
                     </div>
-                    <div>
+                    <div class="value-item fade-in">
                         <h3>ODM</h3>
                     </div>
-                    <div>
+                    <div class="value-item fade-in">
                         <h3>QUALITY</h3>
                     </div>
                 </div>
