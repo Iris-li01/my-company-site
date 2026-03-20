@@ -87,85 +87,61 @@
         .values { display:flex; gap:30px; margin-top:50px; flex-wrap:wrap; justify-content:center; }
         .value-item { background:white; padding:30px; border-radius:var(--border-radius); flex:1 1 200px; text-align:center; box-shadow:0 5px 15px rgba(0,0,0,0.02); }
         .value-item h3 { color:var(--primary); margin-bottom:15px; }
-        /* ========== 企业发展历程（水平曲折虚线）样式 ========== */
-.timeline-horizontal-section {
+        /* ========== 企业发展历程（垂直时间线）样式 ========== */
+.timeline-vertical-section {
     background-color: var(--bg-light);
     padding: 80px 0;
     position: relative;
-    overflow: hidden;
 }
-.timeline-horizontal {
+.timeline-vertical {
     position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-top: 60px;
-    padding: 0 20px;
-    min-height: 380px; /* 为节点上下留出空间 */
+    max-width: 900px;
+    margin: 60px auto 0;
+    padding: 20px 0;
 }
+/* 中间虚线 */
+.timeline-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 120px; /* 与年份宽度对齐 */
+    width: 2px;
+    background: repeating-linear-gradient(to bottom, var(--primary) 0px, var(--primary) 8px, transparent 8px, transparent 16px);
+    z-index: 1;
+}
+/* 每个节点 */
 .timeline-node {
     position: relative;
-    width: 23%; /* 四个节点等宽 */
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    z-index: 3;
-}
-/* 节点内容卡片 */
-.node-content {
-    background: var(--white);
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow-sm);
-    overflow: hidden;
-    width: 100%;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-.node-content:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-hover);
-}
-/* 图片区域 */
-.node-img {
-    position: relative;
-    width: 100%;
-    height: 140px;
-    overflow: hidden;
-}
-.node-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s;
-}
-.node-content:hover .node-img img {
-    transform: scale(1.05);
+    align-items: flex-start;
+    margin-bottom: 50px;
+    z-index: 2;
+    min-height: 100px;
 }
 /* 年份标签 */
-.node-year {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background: var(--primary);
-    color: white;
+.timeline-year {
+    width: 100px;
+    font-size: 2rem;
     font-weight: 700;
-    font-size: 1.2rem;
-    padding: 4px 14px;
-    border-radius: 40px;
-    box-shadow: 0 4px 10px rgba(34,93,181,0.3);
-    z-index: 2;
+    color: var(--primary);
+    text-align: right;
+    padding-right: 30px;
+    line-height: 1.2;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 3;
 }
-/* 描述文字 */
-.node-desc {
-    padding: 15px 15px 20px;
-    color: var(--text-soft);
-    font-size: 0.9rem;
-    line-height: 1.5;
+/* 内容区域（图标+卡片） */
+.timeline-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    flex: 1;
+    position: relative;
+    z-index: 3;
 }
-.node-desc p {
-    margin: 0;
-}
-/* 脚印图标 - 位于节点下方，作为连接点 */
-.node-icon {
+/* 足迹图标 */
+.timeline-icon {
     width: 40px;
     height: 40px;
     background: var(--primary);
@@ -175,90 +151,64 @@
     justify-content: center;
     color: white;
     font-size: 1.4rem;
-    margin-top: 20px;
     box-shadow: 0 4px 8px rgba(34,93,181,0.3);
+    flex-shrink: 0;
+    margin-left: -10px; /* 让图标覆盖在虚线上 */
     position: relative;
     z-index: 4;
 }
-/* 节点交替上下位置：left类节点在上方，right类节点在下方 */
-.timeline-node.left .node-content {
-    margin-top: 0;
+/* 描述卡片 */
+.timeline-card {
+    background: var(--white);
+    border-radius: var(--border-radius);
+    padding: 20px 25px;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.3s, box-shadow 0.3s;
+    flex: 1;
 }
-.timeline-node.left .node-icon {
-    margin-top: 20px; /* 图标在卡片下方 */
+.timeline-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
 }
-.timeline-node.right {
-    margin-top: 60px; /* 让右侧节点整体下移 */
-}
-.timeline-node.right .node-icon {
-    margin-top: 20px;
-}
-
-/* 水平曲折虚线（由竖线和水平虚线构成） */
-.timeline-connector {
-    position: absolute;
-    top: 50%; /* 基础水平线位置，后续根据节点上下微调 */
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: repeating-linear-gradient(to right, var(--primary) 0px, var(--primary) 10px, transparent 10px, transparent 20px);
-    z-index: 1;
-    transform: translateY(-50%);
+.timeline-card p {
+    color: var(--text-soft);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
 }
 
-/* 为每个节点绘制向上的竖线（连接节点与水平虚线） */
-.timeline-node::before {
-    content: '';
-    position: absolute;
-    left: 50%;
-    width: 2px;
-    height: 40px; /* 连接线长度 */
-    background: repeating-linear-gradient(to bottom, var(--primary) 0px, var(--primary) 8px, transparent 8px, transparent 16px);
-    transform: translateX(-50%);
-    z-index: 2;
-}
-/* 根据节点上下位置调整竖线方向 */
-.timeline-node.left::before {
-    bottom: 30px; /* 从卡片底部向下连接到水平虚线 */
-    top: auto;
-}
-.timeline-node.right::before {
-    top: -20px; /* 从卡片顶部向上连接到水平虚线 */
-    bottom: auto;
-}
-/* 确保水平虚线和竖线重叠处不重复 */
-.timeline-node.left .node-icon {
-    margin-top: 20px;
-}
-.timeline-node.right .node-icon {
-    margin-top: 20px;
-}
-
-/* 响应式：小于992px时改为两列 */
-@media (max-width: 992px) {
-    .timeline-horizontal {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 40px;
+/* 响应式：小于768px时，年份在上方，卡片在下，隐藏虚线 */
+@media (max-width: 768px) {
+    .timeline-line {
+        left: 30px; /* 虚线靠近左侧 */
     }
     .timeline-node {
-        width: 45%;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-left: 20px;
     }
-    .timeline-node.right {
-        margin-top: 0;
+    .timeline-year {
+        width: auto;
+        text-align: left;
+        padding-right: 0;
+        margin-bottom: 10px;
+        font-size: 1.8rem;
     }
-    .timeline-node.left::before,
-    .timeline-node.right::before {
-        display: none; /* 隐藏连接线 */
-    }
-    .timeline-connector {
-        display: none; /* 隐藏水平虚线 */
-    }
-}
-/* 小于550px时单列 */
-@media (max-width: 550px) {
-    .timeline-node {
+    .timeline-content {
         width: 100%;
+        gap: 15px;
+    }
+    .timeline-icon {
+        margin-left: 0;
+    }
+}
+@media (max-width: 480px) {
+    .timeline-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .timeline-icon {
+        margin-bottom: 10px;
     }
 }
     </style>
@@ -316,72 +266,66 @@
                 </div>
 
                 <!-- History timeline -->
-                <!-- ========== 企业发展历程（水平曲折虚线） ========== -->
-<section class="timeline-horizontal-section">
+<!-- ========== 企业发展历程（垂直时间线） ========== -->
+<section class="timeline-vertical-section">
     <div class="container">
-        <h2 class="section-title fade-in">Our Journey</h2>
-        <p class="section-sub fade-in">Key milestones that shaped AquaFlow</p>
+        <h2 class="section-title fade-in">Company Milestones</h2>
+        <p class="section-sub fade-in">Our journey through the years</p>
 
-        <div class="timeline-horizontal">
-            <!-- 节点 1 -->
-            <div class="timeline-node left fade-in">
-                <div class="node-content">
-                    <div class="node-img">
-                        <img src="https://picsum.photos/id/106/400/300" alt="Foundation">
-                        <span class="node-year">2010</span>
-                    </div>
-                    <div class="node-desc">
-                        <p>AquaFlow founded in Hamburg, Germany. First submersible pump launched, serving local farmers and households.</p>
+        <div class="timeline-vertical">
+            <!-- 节点 2025 -->
+            <div class="timeline-node fade-in">
+                <div class="timeline-year">2025</div>
+                <div class="timeline-content">
+                    <div class="timeline-icon">👣</div>
+                    <div class="timeline-card">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                     </div>
                 </div>
-                <div class="node-icon">👣</div>
             </div>
-            <!-- 节点 2 -->
-            <div class="timeline-node right fade-in">
-                <div class="node-content">
-                    <div class="node-img">
-                        <img src="https://picsum.photos/id/159/400/300" alt="Expansion">
-                        <span class="node-year">2015</span>
-                    </div>
-                    <div class="node-desc">
-                        <p>Expanded to international markets; opened R&D center and introduced energy‑efficient centrifugal pumps.</p>
+            <!-- 节点 2024 -->
+            <div class="timeline-node fade-in">
+                <div class="timeline-year">2024</div>
+                <div class="timeline-content">
+                    <div class="timeline-icon">👣</div>
+                    <div class="timeline-card">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                     </div>
                 </div>
-                <div class="node-icon">👣</div>
             </div>
-            <!-- 节点 3 -->
-            <div class="timeline-node left fade-in">
-                <div class="node-content">
-                    <div class="node-img">
-                        <img src="https://picsum.photos/id/306/400/300" alt="Solar Pumps">
-                        <span class="node-year">2020</span>
-                    </div>
-                    <div class="node-desc">
-                        <p>Launched solar pump series and smart monitoring system, bringing sustainable water solutions worldwide.</p>
+            <!-- 节点 2023 -->
+            <div class="timeline-node fade-in">
+                <div class="timeline-year">2023</div>
+                <div class="timeline-content">
+                    <div class="timeline-icon">👣</div>
+                    <div class="timeline-card">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                     </div>
                 </div>
-                <div class="node-icon">👣</div>
             </div>
-            <!-- 节点 4 -->
-            <div class="timeline-node right fade-in">
-                <div class="node-content">
-                    <div class="node-img">
-                        <img src="https://picsum.photos/id/180/400/300" alt="Global Reach">
-                        <span class="node-year">2025</span>
-                    </div>
-                    <div class="node-desc">
-                        <p>Now serving 30+ countries with 200+ employees, recognized as a leader in pump innovation.</p>
+            <!-- 节点 2022 -->
+            <div class="timeline-node fade-in">
+                <div class="timeline-year">2022</div>
+                <div class="timeline-content">
+                    <div class="timeline-icon">👣</div>
+                    <div class="timeline-card">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                     </div>
                 </div>
-                <div class="node-icon">👣</div>
             </div>
-            <!-- 水平虚线（曲折效果由竖线和水平线共同构成） -->
-            <div class="timeline-connector"></div>
+            <!-- 节点 2021 -->
+            <div class="timeline-node fade-in">
+                <div class="timeline-year">2021</div>
+                <div class="timeline-content">
+                    <div class="timeline-icon">👣</div>
+                    <div class="timeline-card">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- 中间虚线 -->
+            <div class="timeline-line"></div>
         </div>
-    </div>
-</section>
-    </div>
-</section>
     </div>
 </section>
             </div>
