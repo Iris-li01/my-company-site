@@ -88,168 +88,168 @@
         .value-item { background:white; padding:30px; border-radius:var(--border-radius); flex:1 1 200px; text-align:center; box-shadow:0 5px 15px rgba(0,0,0,0.02); }
         .value-item h3 { color:var(--primary); margin-bottom:15px; }
         /* ========== 企业发展历程（曲折时间线）样式 ========== */
-.timeline-section {
-    background-color: var(--bg-light);
-    padding: 80px 0;
-    position: relative;
-    overflow: hidden;
-}
-.timeline {
-    position: relative;
-    max-width: 1000px;
-    margin: 40px auto 0;
-    padding: 20px 0;
-}
-/* 中间虚线 */
-.timeline-line {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    width: 2px;
-    background: repeating-linear-gradient(to bottom, var(--primary) 0px, var(--primary) 8px, transparent 8px, transparent 16px);
-    transform: translateX(-50%);
-    z-index: 1;
-}
-/* 每个时间节点 */
-.timeline-item {
-    position: relative;
-    width: 50%;
-    padding: 0 40px 50px 40px;
-    z-index: 2;
-    display: flex;
-    align-items: flex-start;
-}
-.timeline-item.left {
-    left: 0;
-    padding-right: 60px;
-    justify-content: flex-end;
-}
-.timeline-item.right {
-    left: 50%;
-    padding-left: 60px;
-    justify-content: flex-start;
-}
-/* 内容卡片 */
-.timeline-content {
-    background: var(--white);
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow-sm);
-    overflow: hidden;
-    width: 100%;
-    max-width: 380px;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-.timeline-content:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-hover);
-}
-/* 图片区域 */
-.timeline-img {
-    position: relative;
-    width: 100%;
-    height: 180px;
-    overflow: hidden;
-}
-.timeline-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s;
-}
-.timeline-content:hover .timeline-img img {
-    transform: scale(1.05);
-}
-/* 年份标签（位于图片左上角） */
-.timeline-year {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    background: var(--primary);
-    color: white;
-    font-weight: 700;
-    font-size: 1.4rem;
-    padding: 5px 18px;
-    border-radius: 40px;
-    box-shadow: 0 4px 10px rgba(34,93,181,0.3);
-    z-index: 2;
-}
-/* 描述文字 */
-.timeline-desc {
-    padding: 18px 20px 22px;
-    color: var(--text-soft);
-    font-size: 0.95rem;
-    line-height: 1.6;
-}
-.timeline-desc p {
-    margin: 0;
-}
-/* 脚印图标 */
-.timeline-icon {
-    position: absolute;
-    top: 0;
-    width: 40px;
-    height: 40px;
-    background: var(--primary);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 1.4rem;
-    box-shadow: 0 4px 8px rgba(34,93,181,0.3);
-    z-index: 3;
-}
-.timeline-item.left .timeline-icon {
-    right: -20px;
-}
-.timeline-item.right .timeline-icon {
-    left: -20px;
-}
+        .timeline-section {
+            background-color: var(--bg-light);
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 40px auto 0;
+            padding: 20px 0;
+        }
+        /* 中间虚线 */
+        .timeline-line {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 2px;
+            background: repeating-linear-gradient(to bottom, var(--primary) 0px, var(--primary) 8px, transparent 8px, transparent 16px);
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+        /* 每个时间节点 */
+        .timeline-item {
+            position: relative;
+            width: 50%;
+            padding: 0 40px 50px 40px;
+            z-index: 2;
+            display: flex;
+            align-items: flex-start;
+        }
+        .timeline-item.left {
+            left: 0;
+            padding-right: 60px;
+            justify-content: flex-end;
+        }
+        .timeline-item.right {
+            left: 50%;
+            padding-left: 60px;
+            justify-content: flex-start;
+        }
+        /* 内容卡片 */
+        .timeline-content {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+            width: 100%;
+            max-width: 380px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        /* 图片区域 */
+        .timeline-img {
+            position: relative;
+            width: 100%;
+            height: 180px;
+            overflow: hidden;
+        }
+        .timeline-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        .timeline-content:hover .timeline-img img {
+            transform: scale(1.05);
+        }
+        /* 年份标签（位于图片左上角） */
+        .timeline-year {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--primary);
+            color: white;
+            font-weight: 700;
+            font-size: 1.4rem;
+            padding: 5px 18px;
+            border-radius: 40px;
+            box-shadow: 0 4px 10px rgba(34,93,181,0.3);
+            z-index: 2;
+        }
+        /* 描述文字 */
+        .timeline-desc {
+            padding: 18px 20px 22px;
+            color: var(--text-soft);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .timeline-desc p {
+            margin: 0;
+        }
+        /* 脚印图标 */
+        .timeline-icon {
+            position: absolute;
+            top: 0;
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.4rem;
+            box-shadow: 0 4px 8px rgba(34,93,181,0.3);
+            z-index: 3;
+        }
+        .timeline-item.left .timeline-icon {
+            right: -20px;
+        }
+        .timeline-item.right .timeline-icon {
+            left: -20px;
+        }
 
-/* 响应式：小于768px时变为垂直单列，线变为水平 */
-@media (max-width: 768px) {
-    .timeline-line {
-        left: 30px;
-        width: 2px;
-        height: auto;
-        background: repeating-linear-gradient(to bottom, var(--primary) 0px, var(--primary) 8px, transparent 8px, transparent 16px);
-    }
-    .timeline-item {
-        width: 100%;
-        left: 0 !important;
-        padding: 0 0 0 70px !important;
-        margin-bottom: 40px;
-        justify-content: flex-start !important;
-    }
-    .timeline-item.right .timeline-icon,
-    .timeline-item.left .timeline-icon {
-        left: 10px;
-        right: auto;
-    }
-    .timeline-content {
-        max-width: 100%;
-    }
-    .timeline-year {
-        font-size: 1.2rem;
-        padding: 4px 14px;
-    }
-}
-@media (max-width: 480px) {
-    .timeline-item {
-        padding-left: 60px !important;
-    }
-    .timeline-icon {
-        width: 34px;
-        height: 34px;
-        font-size: 1.2rem;
-        left: 5px !important;
-    }
-    .timeline-year {
-        font-size: 1rem;
-        padding: 3px 10px;
-    }
-}
+        /* 响应式：小于768px时变为垂直单列，线变为水平 */
+        @media (max-width: 768px) {
+            .timeline-line {
+                left: 30px;
+                width: 2px;
+                height: auto;
+                background: repeating-linear-gradient(to bottom, var(--primary) 0px, var(--primary) 8px, transparent 8px, transparent 16px);
+            }
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                padding: 0 0 0 70px !important;
+                margin-bottom: 40px;
+                justify-content: flex-start !important;
+            }
+            .timeline-item.right .timeline-icon,
+            .timeline-item.left .timeline-icon {
+                left: 10px;
+                right: auto;
+            }
+            .timeline-content {
+                max-width: 100%;
+            }
+            .timeline-year {
+                font-size: 1.2rem;
+                padding: 4px 14px;
+            }
+        }
+        @media (max-width: 480px) {
+            .timeline-item {
+                padding-left: 60px !important;
+            }
+            .timeline-icon {
+                width: 34px;
+                height: 34px;
+                font-size: 1.2rem;
+                left: 5px !important;
+            }
+            .timeline-year {
+                font-size: 1rem;
+                padding: 3px 10px;
+            }
+        }
     </style>
 </head>
 <body>
